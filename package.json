@@ -1,0 +1,24 @@
+{
+  "name": "whatsappweb-llm-proxy",
+  "version": "0.0.1",
+  "description": "Runs whatsapp-web.js and forwards messages to LLM backend",
+  "main": "server.js",
+  "keywords": [],
+  "author": "Patrick Prädikow",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/view": "^8.2.0",
+    "axios": "^1.7.2",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "fastify": "^4.25.2",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "https://github.com/pedroslopez/whatsapp-web.js.git#webpack-exodus"
+  },
+  "devDependencies": {
+    "tap": "^16.1.0"
+  },
+  "scripts": {
+    "start": "node app/server.js"
+  }
+}
