@@ -5,7 +5,7 @@ const axios = require("axios");
 
 console.log("API_URL: "+process.env.API_URL)
 
-let api_url = process.env.API_URL || "http://127.0.0.1:5000/api"
+let api_url = process.env.API_URL || "http://127.0.0.1:5050/api"
 api_url = api_url.replace(/\/$/, "");
 
 // wwebjs configuration
