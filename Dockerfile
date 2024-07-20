@@ -6,7 +6,5 @@ USER root
 COPY package*.json .
 RUN npm install
 
-VOLUME /data
-
 ENTRYPOINT ["tini", "--"]
 CMD ["node", "server.js"]
