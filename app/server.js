@@ -38,12 +38,14 @@ let chatId = null;
 let wid = null;
 
 // health check backend
+
+
 const checkHealth = async () => {
   try {
     const response = await axios.get(BACKEND_API_URL + "/healthcheck");
     const healthStatus = response.data;
 
-    logger.info(`Backend API health status: ${healthStatus}`);
+    logger.info(healthStatus, "Backend API health status");
     // Example: Checking the status and acting upon it
     if (healthStatus.status === "OK") {
       logger.info("Backend API is healthy.");
