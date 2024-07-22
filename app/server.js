@@ -42,7 +42,7 @@ let wid = null;
 
 const checkHealth = async () => {
   try {
-    const response = await axios.get(BACKEND_API_URL + "/healthcheck");
+    const response = await axios.get(BACKEND_API_URL + "/health");
     const healthStatus = response.data;
 
     logger.info(healthStatus, "Backend API health status");
