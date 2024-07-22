@@ -61,7 +61,7 @@ const checkHealth = async () => {
     }
     // Handle other dependencies and statuses as needed
   } catch (error) {
-    logger.error(`Could not get backend API health status: ${error.message}`);
+    logger.error(error.message, "Could not get backend API health status");
     return false;
   }
 };

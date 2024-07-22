@@ -1,0 +1,38 @@
+FROM --platform=linux/amd64 node:slim
+
+
+RUN apt-get update \
+		&& apt-get install --no-install-recommends --no-install-suggests -y \
+			chromium
+# 		&& rm -rf /var/cache/debconf/*-old \
+# 		&& rm -rf /usr/share/doc/* \
+# 		&& rm -rf /var/lib/apt/lists/* \
+# 		&& rm -rf /var/cache/apt/*
+# RUN apt-get update \
+#     && apt-get install -y gnupg wget ca-certificates --no-install-recommends \
+#     && wget -qO - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+#     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+#     && apt-get update \
+#     && apt-get install -y google-chrome-stable chromium-driver \
+#     && google-chrome --version && chromedriver --version
+
+# Add Tini
+ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+
+ENV CHROME_BIN=/usr/bin/chromium \
+		CHROME_PATH=/usr/lib/chromium/ \
+		PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 \
+		PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
+		CI=true \
+		CONTINUOUS_INTEGRATION=true \
+		DEBIAN_FRONTEND=noninteractive
+
+ADD app /app
+WORKDIR /app
+USER root
+# COPY package*.json .
+# RUN npm install
+
+ENTRYPOINT ["tini", "--"]
+# CMD ["node", "server.js"]
