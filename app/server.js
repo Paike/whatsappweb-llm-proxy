@@ -66,7 +66,7 @@ const checkHealth = async () => {
   }
 };
 
-checkHealth();
+
 
 // show qr code in console
 client.on("qr", (qr) => {
@@ -84,6 +84,7 @@ client.on("ready", () => {
   } catch (error) {
     logger.error(`Error getting account info: ${error}`);
   }
+  checkHealth();
 });
 
 client.initialize();
