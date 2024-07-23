@@ -29,7 +29,7 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{MAJOR}}.{{MINOR}}.{{PATCH}}
             type=sha            
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -48,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}, ${{MAJOR}}.${{MINOR}}.${{PATCH}}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
 
