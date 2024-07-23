@@ -16,11 +16,10 @@ jobs:
         with:
           fetch-depth: 0 # Mandatory to use the extract version from tag action
       - name: Extract version from tag
+        id: get_version
         uses: damienaicheh/extract-version-from-tag-action@v1.3.0    
       - name: Display version
-        id: get_version
-        run: |
-          echo "$MAJOR.$MINOR.$PATCH" >> $GITHUB_ENV
+        run: echo "VERSION=$MAJOR.$MINOR.$PATCH" >> $GITHUB_ENV
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
@@ -39,7 +38,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            thegenuinedockeruser/whatsappweb-llm-proxy:${{ env.TAG }}
+            thegenuinedockeruser/whatsappweb-llm-proxy:${{ env.VERSION }}
             thegenuinedockeruser/whatsappweb-llm-proxy:latest
           platforms: linux/amd64,linux/arm64
 
