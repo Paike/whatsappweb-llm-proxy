@@ -20,7 +20,7 @@ jobs:
       - name: Display version
         id: get_version
         run: |
-          VERSION=$MAJOR.$MINOR.$PATCH
+          echo "$MAJOR.$MINOR.$PATCH" >> $GITHUB_ENV
         env: VERSION: ${{ VERSION }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -40,7 +40,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            thegenuinedockeruser/whatsappweb-llm-proxy:${{ env.VERSION }}
+            thegenuinedockeruser/whatsappweb-llm-proxy:${{ env.TAG }}
             thegenuinedockeruser/whatsappweb-llm-proxy:latest
           platforms: linux/amd64,linux/arm64
 
