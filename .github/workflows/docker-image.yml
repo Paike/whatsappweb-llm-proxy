@@ -21,7 +21,6 @@ jobs:
         id: get_version
         run: |
           echo "$MAJOR.$MINOR.$PATCH" >> $GITHUB_ENV
-        env: VERSION: ${{ VERSION }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
