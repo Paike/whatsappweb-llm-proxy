@@ -21,7 +21,7 @@ jobs:
         id: get_version
         run: |
           VERSION=$MAJOR.$MINOR.$PATCH
-        env: VERSION: ${VERSION}
+        env: VERSION: ${{ VERSION }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       
