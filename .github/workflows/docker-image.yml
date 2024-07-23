@@ -43,7 +43,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            thegenuinedockeruser/whatsappweb-llm-proxy:$VERSION
+            thegenuinedockeruser/whatsappweb-llm-proxy:"$VERSION"
             thegenuinedockeruser/whatsappweb-llm-proxy:latest
           platforms: linux/amd64,linux/arm64
 
