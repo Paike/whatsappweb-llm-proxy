@@ -13,6 +13,7 @@
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "fastify": "^4.25.2",
+    "log-timestamp": "^0.3.0",
     "pino-multi-stream": "^6.0.0",
     "pino-pretty": "^11.2.1",
     "qrcode-terminal": "^0.12.0",
