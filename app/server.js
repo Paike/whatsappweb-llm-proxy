@@ -98,7 +98,7 @@ client.on("message_create", async (message) => {
   if (wid == chatId) return;
 
   console.log("New message from:", chatId);
-  if (chatId.startsWith("+49")) {
+  if (chatId.startsWith("49")) {
     // Continue processing if chatId starts with +49
     console.log("Message is from German number.");
     // Add your logic here
