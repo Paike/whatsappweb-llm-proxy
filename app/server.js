@@ -93,11 +93,20 @@ try {
   return;
 }
 
-
 client.on("message_create", async (message) => {
   chatId = message.from;
   if (wid == chatId) return;
 
+  console.log("New message from:", chatId);
+  if (chatId.startsWith("+49")) {
+    // Continue processing if chatId starts with +49
+    console.log("Message is from German number.");
+    // Add your logic here
+  } else {
+    // Return or handle cases where chatId does not start with +49
+    console.log("Message is from a foreign number, aborting");
+    return; // You can also handle this case differently if needed
+  }
   const chat = await client.getChatById(chatId);
 
   const messages = await chat.fetchMessages({ limit: 100 }); // Adjust the limit as needed.
