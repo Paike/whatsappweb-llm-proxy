@@ -26,7 +26,7 @@ logger.info("BACKEND_API_URL: " + BACKEND_API_URL);
 // wwebjs configuration
 const client = new Client({
   puppeteer: {
-    args: ["--no-sandbox"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   },
   authStrategy: new LocalAuth({ dataPath: "data/.wwebjs_auth/" }),
   webVersionCache: { path: "data/.wwebjs_cache/" },
@@ -121,7 +121,7 @@ client.on("message_create", async (message) => {
   // Send data to python backend
   try {
     logger.info("Sending message to backend");
-    const response = await axios.post(BACKEND_API_URL + "/inference", payload);
+    const response = await axios.post(BACKEND_API_URL + "/inference", git p);
     client.sendMessage(message.from, response.data);
     logger.info(`Received from backend: ${response.data}`);
   } catch (error) {
