@@ -12,12 +12,14 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
+    "express-basic-auth": "^1.2.1",
     "fastify": "^4.25.2",
     "log-timestamp": "^0.3.0",
     "pino-multi-stream": "^6.0.0",
     "pino-pretty": "^11.2.1",
+    "qrcode": "^1.5.4",
     "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "https://github.com/pedroslopez/whatsapp-web.js.git#webpack-exodus"
+    "whatsapp-web.js": "^1.26.0"
   },
   "devDependencies": {
     "tap": "^16.1.0"
