@@ -3,34 +3,44 @@ name: Docker Image CI
 on:
   push:
     branches: [ "build" ]
-  pull_request:
-    branches: [ "build" ]
 
 jobs:
-
-  build:
-
+  docker:
     runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Mandatory to use the extract version from tag action
+          
+      - name: Extract version from tag
+        id: get_version
+        uses: damienaicheh/extract-version-from-tag-action@v1.3.0    
 
-    steps:
-      -
-        name: Set up QEMU
+      - name: Display version
+        run: echo "VERSION=$MAJOR.$MINOR.$PATCH" >> $GITHUB_ENV
+
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      -
-        name: Set up Docker Buildx
+      
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      -
-        name: Login to Docker Hub
+      
+      - name: Login to Docker Hub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
+         
+      - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            thegenuinedockeruser/whatsappweb-llm-proxy:${{ env.VERSION }}
+            thegenuinedockeruser/whatsappweb-llm-proxy:latest
           platforms: linux/amd64,linux/arm64
-          push: true
-          tags: thegenuinedockeruser/whatsappweb-llm-proxy:latest
+
 
           
